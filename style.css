@@ -2,13 +2,14 @@
 body {
     font-family: "Titillium Web", sans-serif !important;;
   }
-.box{
+/* .box{
     justify-content: center;
     text-align: center;
 
-}
+} */
 .img1{
-    border-radius: 20rem;
+    border-radius: 50px;
+    background: rgb(255, 255, 110);
 }
 
 .card1{
@@ -51,6 +52,9 @@ nav.navbar li:hover a {
 nav.navbar li a {
     border-radius: 12px 12px 12px 12px;
   }
+nav{
+  background-color: #ffffff;
+}
 
 .profileImg{
     border-radius: 100%;
@@ -63,4 +67,21 @@ nav.navbar li a {
 }
 .testimonial{
     margin-top: -250px;
+}
+.loginImg{
+  object-fit: cover;
+  height: 100vh;
+}
+.loginPage{
+  height: 100vh;
+}
+.loginbg{
+  background-image: url(assets/Images/login4.jpg);
+  
+  /* background-position: cente; */
+    background-repeat: repeat;
+    background-size: contain;
+}
+.mainDesc{
+  margin-right: 100px;
 }
