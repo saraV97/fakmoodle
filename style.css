@@ -44,7 +44,7 @@ body {
     background-size: cover;
     padding: 20px 0px;
   }
-.main-banner button:hover { background-color: #f0ed45 !important; }
+.main-banner button:hover { background-color: rgb(255, 255, 110) !important; }
 nav.navbar li:hover a {
     background-color: rgba(118, 118, 118, 0.1);
   }
@@ -84,4 +84,30 @@ nav{
 }
 .mainDesc{
   margin-right: 100px;
+}
+footer .nav-link:hover {
+  color: rgb(124, 115, 255);
+  transform: scale(1.1);
+  transition: transform .4s;
+}
+.newsImg{
+  display: block;
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+
+ .card:hover{
+  /* color: rgb(124, 115, 255); */
+  box-shadow: 1px 1px 20px 1px rgb(0 0 0 / 20%) !important;
+  transform: scale(1.01);
+  transition: transform .2s;
+}
+.highlights .card-title{
+  font-size: 25px;
+  font: bold;
+}
+.highImg{
+  width: 70px;
+  font-size: 50px;
 }
