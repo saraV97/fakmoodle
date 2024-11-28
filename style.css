@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+body {
+    font-family: "Titillium Web", sans-serif !important;;
+  }
+/* .box{
+    justify-content: center;
+    text-align: center;
+
+} */
+.img1{
+    border-radius: 50px;
+    background: rgb(255, 255, 110);
+}
+
+.card1{
+    max-height: 100px;
+}
+
+.main-banner {
+    background-image: url(assets/Images/hero\ bg.jpg);
+    border-radius: 0px 0px 50px 50px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 225px 0px;
+  }
+
+.highlights{
+    margin-top: -80px;
+}
+.noto-sans-container {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+.news {
+    background-color: rgb(237, 250, 255);
+    border-radius: 50px 50px 50px 50px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px 0px;
+  }
+.main-banner button:hover { background-color: rgb(255, 255, 110) !important; }
+nav.navbar li:hover a {
+    background-color: rgba(118, 118, 118, 0.1);
+  }
+
+nav.navbar li a {
+    border-radius: 12px 12px 12px 12px;
+  }
+nav{
+  background-color: #ffffff;
+}
+
+.profileImg{
+    border-radius: 100%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+.news{
+    padding: 200px 0px;
+}
+.testimonial{
+    margin-top: -250px;
+}
+.loginImg{
+  object-fit: cover;
+  height: 100vh;
+}
+.loginPage{
+  height: 100vh;
+}
+.loginbg{
+  background-image: url(assets/Images/login4.jpg);
+  
+  /* background-position: cente; */
+    background-repeat: repeat;
+    background-size: contain;
+}
+.mainDesc{
+  margin-right: 100px;
+}
+footer .nav-link:hover {
+  color: rgb(124, 115, 255);
+  transform: scale(1.1);
+  transition: transform .4s;
+}
+.newsImg{
+  display: block;
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card:hover{
+  /* color: rgb(124, 115, 255); */
+  box-shadow: 1px 1px 20px 1px rgb(0 0 0 / 20%) !important;
+  transform: scale(1.01);
+  transition: transform .2s;
+}
+.highlights .card-title{
+  font-size: 25px;
+  font: bold;
+}
+.highImg{
+  width: 70px;
+  font-size: 50px;
+}

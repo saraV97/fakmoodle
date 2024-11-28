@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FakeMoodle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md sticky-top shadow-sm">
+      <div class="container">
+        <a href="/index.html" class="navbar-brand fw-bold">
+          <svg id="logo-85" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M10 0C15.5228 0 20 4.47715 20 10V0H30C35.5228 0 40 4.47715 40 10C40 15.5228 35.5228 20 30 20C35.5228 20 40 24.4772 40 30C40 32.7423 38.8961 35.2268 37.1085 37.0334L37.0711 37.0711L37.0379 37.1041C35.2309 38.8943 32.7446 40 30 40C27.2741 40 24.8029 38.9093 22.999 37.1405C22.9756 37.1175 22.9522 37.0943 22.9289 37.0711C22.907 37.0492 22.8852 37.0272 22.8635 37.0051C21.0924 35.2009 20 32.728 20 30C20 35.5228 15.5228 40 10 40C4.47715 40 0 35.5228 0 30V20H10C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM18 10C18 14.4183 14.4183 18 10 18V2C14.4183 2 18 5.58172 18 10ZM38 30C38 25.5817 34.4183 22 30 22C25.5817 22 22 25.5817 22 30H38ZM2 22V30C2 34.4183 5.58172 38 10 38C14.4183 38 18 34.4183 18 30V22H2ZM22 18V2L30 2C34.4183 2 38 5.58172 38 10C38 14.4183 34.4183 18 30 18H22Z" fill="#5417D7"></path></svg>
+          <!-- <span class="h6 align-bottom">Fake Moodle</span> -->
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" 
+        data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto gap-3">
+            <li class="nav-item">
+              <a href="/index.html" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="./Login/login.html" class="btn btn-primary">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Showcase -->
+    <section
+      class="p-5 p-lg-0 text-center text-sm-start main-banner"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between ">
+          <div>
+            <h1>Empowering Minds🤯,  <span class="" style="color:rgb(237, 250, 255);"> Shaping Futures💡</span></h1>
+            <p class="lead my-4 mainDesc">
+              Explore world-class programs, cutting-edge research, and a vibrant community. Your journey to success starts here!
+            </p>
+            <a
+              href="#subjects"
+              class="btn btn-lg btn-light" 
+            >
+            Explore Subjects
+          </a>
+          </div>
+          <img
+            class="img-fluid img1 d-none d-sm-block shadow"
+            style="width: 53vh;"
+            src="assets/hero1.png"
+            alt="hero"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- highlights -->
+    <section class="p-5 highlights">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="card shadow rounded-3">
+              <div class="card-body text-center d-flex align-items-center justify-content-center gap-4">
+                <div class="highImg">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">World-Class Faculty</h3>
+                  <p class="card-text">
+                    Learn from leading experts and researchers.
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card shadow rounded-3">
+              <div class="card-body text-center d-flex align-items-center  justify-content-center gap-4">
+                <div class="highImg">
+                  <i class="fa-solid fa-globe"></i>
+                  <!-- <i class="bi bi-globe"></i> -->
+
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">Global Opportunities</h3>
+                  <p class="card-text">
+                    Study abroad programs and international partnerships.
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div><div class="col-md">
+            <div class="card shadow rounded-3">
+              <div class="card-body text-center d-flex align-items-center  justify-content-center gap-4">
+                <div class="highImg">
+                  <!-- <i class="bi bi-laptop"></i> -->
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">Career Support</h3>
+                  <p class="card-text">
+                    95% graduate employment rate within six months.
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subjects -->
+     <section class="py-3 mb-5 subjects" id="subjects">
+      <div class="container">
+        <div class=" text-center display-6 fw-light mb-5">Explore Our Subjects</div>
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="card mb-3 shadow-sm rounded-4" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-start-4 " alt="software dev">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Software Development</h5>
+                    <p class="card-text ">Master to design, build, and test scalable software solutions using modern tools.</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3 shadow-sm rounded-4" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="img-fluid rounded-start-4" alt="Web dev">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Web Design and Development</h5>
+                    <p class="card-text">Create responsive, interactive websites using front-end and back-end technologies.</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3 shadow-sm rounded-4" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="img-fluid rounded-start-4" alt="database system">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Database Systems</h5>
+                    <p class="card-text">Master database design, SQL, and efficient data management techniques.</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3 shadow-sm rounded-4" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/03/Intel-Rocker-Lake-2-e1615908186584-920x614.jpg" class="img-fluid rounded-start-4" alt="computer system">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Computer Systems</h5>
+                    <p class="card-text">Understand computer architecture, networks, and system performance optimization.</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+        
+        
+      </div>
+     </section>
+
+    <!-- News and Evenets -->
+    <section class="pt-3 news">
+      <div class="container mb-5">
+        <div class="text-center display-6 fw-light mb-5">Latest News & Events</div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <a href="#" class="link-dark" style="text-decoration: none;">
+              <div class="col">
+                <div class="row-4">
+                  <img src="../fakemoodle//assets/prof3.jpg" class="img-fluid rounded-top" alt="software dev">
+                </div>
+                <div class="row-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Software Development</h5>
+                    <p class="card-text mb-0">Master to design, build, and test scalable software solutions using modern tools.</p>
+                    <a href="#" class="link-light"><small class="text-muted">Read more<i class="fa-solid fa-arrow-right ps-2"></i></small></a>
+                  </div>
+                </div>
+              </div></a>
+            </div>
+          </div>
+
+          <div class="col-md-6 d-flex flex-column align-items-center justify-content-between jus">
+            <div class="card shadow-sm" >
+              <div class="row g-0">
+                <div class="col-md-4 overflow-hidden">
+                  <img src="../fakemoodle/assets/prof2.jpg" class="rounded-start newsImg img-fluid" alt="software dev">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Software Development</h5>
+                    <p class="card-text mb-0">Master to design, build, and test scalable software solutions using modern tools.</p>
+                    <a href="#" class="link-light"><small class="text-muted">Read more<i class="fa-solid fa-arrow-right ps-2"></i></small></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-sm " >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-start newsImg" alt="software dev">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Software Development</h5>
+                    <p class="card-text mb-0">Master to design, build, and test scalable software solutions using modern tools.</p>
+                    <a href="#" class="link-light"><small class="text-muted">Read more<i class="fa-solid fa-arrow-right ps-2"></i></small></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-sm " >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-start newsImg" alt="software dev">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Software Development</h5>
+                    <p class="card-text mb-0">Master to design, build, and test scalable software solutions using modern tools.</p>
+                    <a href="#" class="link-light"><small class="text-muted">Read more<i class="fa-solid fa-arrow-right ps-2"></i></small></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+      </div>
+     </section>
+
+    <!-- Testimonial -->
+    
+    <section class="p-5 testimonial">
+      <div class="container">
+        <div class=" text-center display-6 fw-light mb-5">Our Students Think!</div>
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="card shadow rounded-4">
+              <div class="card-body text-center d-flex align-items-center justify-content-center gap-4">
+                <div class="col-md-4 d-flex flex-column">
+                  <img src="assets/prof2.jpg" class="img-fluid profileImg mb-3" alt="software dev">
+                  <div class="">
+                    <p class="h6 fw-bold">Sarah</p>
+                    <p class="small m-0">Computer Science</p>
+                  </div>
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">
+                  <i class="fa-solid fa-quote-left"></i>
+                </h3>
+                  <p class="card-text">
+                    "This university has exceeded my expectations with its supportive faculty and hands-on learning opportunities. It’s been a transformative experience!"
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex align-items-stretch">
+            <div class="card shadow rounded-4">
+              <div class="card-body text-center d-flex align-items-center  justify-content-center gap-4">
+                <div class="col-md-4 d-flex flex-column">
+                  <img src="assets/prof1.jpg" class="img-fluid profileImg mb-3" alt="software dev">
+                  <div class="">
+                    <p class="h6 fw-bold">Peter</p>
+                    <p class="small m-0">Business Management</p>
+                  </div>
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">
+                  <i class="fa-solid fa-quote-left"></i>
+                </h3>
+                  <p class="card-text">
+                    "The campus atmosphere is vibrant, and the resources available for students are top-notch. I feel prepared for my career ahead."
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div><div class="col-md">
+            <div class="card shadow rounded-4">
+              <div class="card-body text-center d-flex align-items-center  justify-content-center gap-4">
+                <div class="col-md-4 d-flex flex-column">
+                  <img src="assets/prof3.jpg" class="img-fluid profileImg mb-3" alt="software dev">
+                  <div class="">
+                    <p class="h6 fw-bold">James</p>
+                    <p class="small m-0">Environmental Science</p>
+                  </div>
+                </div>
+                <div class="text-sm-start"><h3 class="card-title">
+                  <i class="fa-solid fa-quote-left"></i>
+                </h3>
+                  <p class="card-text">
+                    "From excellent programs to global opportunities, this university has helped me grow academically and personally."
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+<footer class="p-2 bg-dark text-white text-center position-relative">
+  <div class="container">
+      <div class="d-flex justify-content-between my-2">
+          <a href="#" class="navbar-brand fw-bold align-content-center">
+            <svg id="logo-85" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M10 0C15.5228 0 20 4.47715 20 10V0H30C35.5228 0 40 4.47715 40 10C40 15.5228 35.5228 20 30 20C35.5228 20 40 24.4772 40 30C40 32.7423 38.8961 35.2268 37.1085 37.0334L37.0711 37.0711L37.0379 37.1041C35.2309 38.8943 32.7446 40 30 40C27.2741 40 24.8029 38.9093 22.999 37.1405C22.9756 37.1175 22.9522 37.0943 22.9289 37.0711C22.907 37.0492 22.8852 37.0272 22.8635 37.0051C21.0924 35.2009 20 32.728 20 30C20 35.5228 15.5228 40 10 40C4.47715 40 0 35.5228 0 30V20H10C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM18 10C18 14.4183 14.4183 18 10 18V2C14.4183 2 18 5.58172 18 10ZM38 30C38 25.5817 34.4183 22 30 22C25.5817 22 22 25.5817 22 30H38ZM2 22V30C2 34.4183 5.58172 38 10 38C14.4183 38 18 34.4183 18 30V22H2ZM22 18V2L30 2C34.4183 2 38 5.58172 38 10C38 14.4183 34.4183 18 30 18H22Z" fill="#5417D7"></path></svg>
+        
+          </a>
+         
+          <div>
+              <ul class="navbar-nav ms-auto gap-4 hstack opacity-50">
+              <!-- <li class="nav-item opacity-75 small">
+                Related links:
+              </li> -->
+              <li class="nav-item">
+                <a href="/index.html" class="nav-link ">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact.html" class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Terms</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Policies</a>
+              </li>
+              <li class="nav-item">
+                <a href="/login.html" class="nav-link">Student</a>
+              </li>
+          </ul></div>
+          
+
+          <div class="hstack">
+              <ul class="navbar-nav ms-auto gap-3 hstack opacity-50">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/about.html" class="nav-link">
+                      <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fa-brands fa-facebook"></i>                      </a>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+
+    <!-- <a href="#" class="position-absolute bottom-0 end-0 p-5">
+      <i class="bi bi-arrow-up-circle h1"></i>
+    </a> -->
+  </div>
+  <p class="opacity-25 text-center align-items-end small" style="font-size: 14px;">Copyright &copy; 2024 Saravanan</p>
+
+</footer>
+
+   <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+  </script>
+</body>
+</html>
