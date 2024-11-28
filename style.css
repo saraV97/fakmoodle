@@ -97,7 +97,7 @@ footer .nav-link:hover {
   object-fit: cover;
 }
 
- .card:hover{
+.card:hover{
   /* color: rgb(124, 115, 255); */
   box-shadow: 1px 1px 20px 1px rgb(0 0 0 / 20%) !important;
   transform: scale(1.01);

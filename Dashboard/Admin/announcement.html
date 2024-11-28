@@ -29,7 +29,7 @@
                         Admin Menu
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link nav-link active">
+                        <a href="#" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Dashboard
                         </a>
@@ -66,13 +66,13 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" 
+                        <a href="#" class="sidebar-link nav-link active" data-bs-target="#auth" 
                             aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                             Announcement
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" 
+                        <a href="#" class="sidebar-link" data-bs-target="#auth" 
                             aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                             Grades
                         </a>
@@ -86,7 +86,7 @@
         <!-- <button class="btn" id="sidebar-toggle" type="button">
             <span class="navbar-toggler-icon"></span>
         </button> -->
-        <div class="display-6">Admin Dashboard</div>
+        <div class="display-6">Announcement</div>
         <div class="navbar-collapse navbar">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown pe-4 mt-2 align-self-center">
@@ -113,63 +113,40 @@
     <main class="content px-3 py-2 ">
         <div class="container-fluid">
             <div class="row">
-                <div class=" col-8">
+                <div class=" col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="h2">Welcome back, Sara</div>
+                            <div class="h4">Past Announcements</div>
                             <div class="">12th November, 2024</div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Total Students</div>
-                                </div>
-                         
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Total Subjects</div>
-                                </div>
-                         
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h4" >Subjects Available</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                         
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class=" col-4">
+                <div class=" col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="h5">Tasks</div>
-                            <div class="col-4">Tasks</div>
+                            <div class="h4 text-center">Post a new Announcemrnt</div>
+                            <div class="">
+                                <form class="my-4">
+                                    <div class="mb-3">
+                                    <label for="announcementTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="announcementTitle" placeholder="Announcement Title">
+                                    </div>
+                            
+                                    <div class="mb-3">
+                                        <label for="announcementDetails" class="form-label">Description</label>
+                                        <textarea class="form-control" id="announcementDetails" rows="3" placeholder="Announcement Details"></textarea>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">Post</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                
                 </div>
-                <div class=" col-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="h6">Search Students by ID</div>
-                            <div class="">12th November, 2024</div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="h6">Avegare Student grade</div>
-                            <div class="">12th November, 2024</div>
-                        </div>
-                    </div>
-                </div>
+               
 
             </div>
         </div>
