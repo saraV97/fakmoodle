@@ -3,6 +3,14 @@ session_start();
 if ($_SESSION['userType'] == 'admin') {
     header("location:../../login/login.html");
 }
+include '../dbConnection.php';
+$conn = OpenCon();
+
+$sql = "SELECT * FROM announcements ORDER BY ID DESC LIMIT 1";
+$result = mysqli_query($conn, $sql);
+
+CloseCon($conn);
+
 ?>
 
 <!doctype html>
@@ -55,8 +63,8 @@ if ($_SESSION['userType'] == 'admin') {
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/Dashboard/Student/myCourse.html" class="sidebar-link " data-bs-target="#pages"
-                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                        <a href="myCourse.html" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
+                                class="fa-solid fa-file-lines pe-2"></i>
                             My Course
                         </a>
                         <!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
@@ -84,8 +92,8 @@ if ($_SESSION['userType'] == 'admin') {
                         </ul> -->
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                                class="fa-regular fa-user pe-2"></i>
+                        <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
+                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                             Announcement
                         </a>
                     </li>
@@ -106,185 +114,217 @@ if ($_SESSION['userType'] == 'admin') {
                 </ul>
             </div>
         </aside>
-        <div class="main rounded-4">
-            <nav class="navbar navbar-expand px-4 ms-1 pb-0">
-                <!-- <button class="btn" id="sidebar-toggle" type="button">
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="main rounded-4">
+                <nav class="navbar navbar-expand px-4 ms-1 pb-0">
+                    <!-- <button class="btn" id="sidebar-toggle" type="button">
             <span class="navbar-toggler-icon"></span>
         </button> -->
-                <div class="display-6">Student Dashboard</div>
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown pe-4 mt-2 align-self-center">
-                            <a href="#" data-bs-toggle="dropdown" class="">
-                                <i class="fa-regular fa-bell h3"></i>
-                            </a>
-                            <!-- <div class="dropdown-menu dropdown-menu-end">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Logout</a>
-                    </div> -->
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main class="content px-3 py-2">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h2">Welcome back, Sara</div>
-                                    <div class="">12th November, 2024</div>
+                    <div class="display-6">Student Dashboard</div>
+                    <div class="navbar-collapse navbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown pe-4 mt-2 align-self-center">
+                                <a href="#" data-bs-toggle="dropdown" class="">
+                                    <i class="fa-regular fa-bell h3"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="#" class="dropdown-item">
+
+                                        <div class="small ">You have a new Announcement for
+                                            <span class="fw-bold"><?php echo "{$row['subject']}"; ?></span>
+                                        </div>
+                                        <div class="small">Poster by <span
+                                                class="small text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
+                                        </div>
+
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Your Course</div>
-                                            <div class="fw-bold h5">MSc in Computing</div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                    <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="#" class="dropdown-item">Profile</a>
+                                    <a href="../../Login/logout.php" class="dropdown-item">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main class="content px-3 py-2">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h2">Welcome back, Sara</div>
+                                        <div class="">12th November, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="h6">Your Course</div>
+                                                <div class="fw-bold h5">MSc in Computing</div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <div class="">Joined Year</div>
+                                                        <div class="fw-bold h6 pb-0 mb-0">2024</div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="">Course Duration</div>
+                                                        <div class="fw-bold h6 pb-0 mb-0">1 Year</div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card">
+
+                                            <div class="card-body">
+                                                <div class="small pb-1">You have a new Announcement</div>
+                                                <hr class="pb-1 m-0">
+                                                <div class="fw-bold"><?php echo "{$row['subject']}"; ?>
+                                                </div>
+                                                <div class=""><?php echo "{$row['description']}"; ?>
+                                                </div>
+                                                <div class="small fw-bold pt-2">Poster by <span
+                                                        class="h6 text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Announcement</div>
-                                            <div class="">looerer erferf ergerg ergerg erg erg erg erg erg erg erg erg
+                            </div>
+                            <div class=" col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h5 pb-3 text-center">Upcomming Classes</div>
+                                        <div>
+                                            <ul class="m-0 p-0 text-center">
+                                                <li class="hstack mb-3">
+                                                    <div class="col-3">
+                                                        <span class=" fw-bold">10 AM</span>
+                                                        <div class="small">A17</div>
+                                                    </div>
+                                                    <div class="vr"></div>
+                                                    <div class="col-8 text-center ps-4">
+                                                        <span class="h6 fw-bold">Web Development</span>
+                                                        <div>John Oliver</div>
+                                                    </div>
+                                                </li>
+                                                <li class="hstack mb-3">
+                                                    <div class="col-3">
+                                                        <span class=" fw-bold">12 PM</span>
+                                                        <div class="small">JKCC-C1</div>
+                                                    </div>
+                                                    <div class="vr"></div>
+                                                    <div class="col-8 text-center ps-4">
+                                                        <span class="h6 fw-bold">Lab Session - WD</span>
+                                                        <div>James P</div>
+                                                    </div>
+                                                </li>
+                                                <li class="hstack">
+                                                    <div class="col-3">
+                                                        <span class=" fw-bold">4 PM</span>
+                                                        <div class="small">B55</div>
+                                                    </div>
+                                                    <div class="vr"></div>
+                                                    <div class="col-8 text-center ps-4">
+                                                        <span class="h6 fw-bold">Database System</span>
+                                                        <div>Sam Connie</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h6">Your Subjects</div>
+                                        <div class="card-body border rounded-3 py-2 mb-1">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <div class="fw-bold align-content-center">Software Development 1</div>
+                                                <a href="subject.html" class="btn btn-outline-primary py-1">View</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body border rounded-3 py-2 mb-1">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <div class="fw-bold align-content-center">Web Development</div>
+                                                <a href="#" class="btn btn-outline-primary py-1">View</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body border rounded-3 py-2">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <div class="fw-bold align-content-center">Database Systems</div>
+                                                <a href="#" class="btn btn-outline-primary py-1">View</a>
                                             </div>
                                         </div>
 
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h5 pb-3 text-center">Upcomming Classes</div>
-                                    <div>
-                                        <ul class="m-0 p-0 text-center">
-                                            <li class="hstack mb-3">
-                                                <div class="col-3">
-                                                    <span class="small fw-bold">10 AM</span>
-                                                    <div>A17</div>
-                                                </div>
-                                                <div class="vr"></div>
-                                                <div class="col-8 text-center ps-4">
-                                                    <span class="h6 fw-bold">Web Development</span>
-                                                    <div>John Oliver</div>
-                                                </div>
-                                            </li>
-                                            <li class="hstack mb-3">
-                                                <div class="col-3">
-                                                    <span class="small fw-bold">12 PM</span>
-                                                    <div>JKCC-C1</div>
-                                                </div>
-                                                <div class="vr"></div>
-                                                <div class="col-8 text-center ps-4">
-                                                    <span class="h6 fw-bold">Lab Session - WD</span>
-                                                    <div>James P</div>
-                                                </div>
-                                            </li>
-                                            <li class="hstack">
-                                                <div class="col-3">
-                                                    <span class="small fw-bold">4 PM</span>
-                                                    <div>B55</div>
-                                                </div>
-                                                <div class="vr"></div>
-                                                <div class="col-8 text-center ps-4">
-                                                    <span class="h6 fw-bold">Database System</span>
-                                                    <div>Sam Connie</div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Your Subjects</div>
-                                    <div class="card-body border rounded-3 py-2 mb-1">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <div class="fw-bold align-content-center">Software Development 1</div>
-                                            <a href="#" class="btn btn-outline-primary py-1">View</a>
+                            <div class=" col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h6">Tasks</div>
+                                        <div class="d-flex justify-content-between">
+                                            <input type="text" class="w-75 border-1 rounded-3">
+                                            <button class="btn btn-light py-0 border-1 border-black">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="small py-3">
+                                            <ul class="p-0">
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="card-body border rounded-3 py-2 mb-1">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <div class="fw-bold align-content-center">Web Development</div>
-                                            <a href="#" class="btn btn-outline-primary py-1">View</a>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border rounded-3 py-2">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <div class="fw-bold align-content-center">Database Systems</div>
-                                            <a href="#" class="btn btn-outline-primary py-1">View</a>
-                                        </div>
-                                    </div>
-
-
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Tasks</div>
-                                    <div class="d-flex justify-content-between">
-                                        <input type="text" class="w-75 border-1 rounded-3">
-                                        <button class="btn btn-light py-0 border-1 border-black">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="small py-3">
-                                        <ul class="p-0">
-                                            <li class="d-flex justify-content-between">
-                                                <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                <span>
-                                                    <button class="btn btn-success py-0 border-1 border-black">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
-                                                <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                <span>
-                                                    <button class="btn btn-success py-0 border-1 border-black">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
-                                                <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                <span>
-                                                    <button class="btn btn-success py-0 border-1 border-black">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
 
 
-        </div>
+            </div>
+            <?php
+        }
+        ?>
 
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->

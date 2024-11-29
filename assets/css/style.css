@@ -80,6 +80,7 @@ h4 {
 .active{
     background-color: rgb(255, 255, 195);
     border-radius: 10px;
+
 }
 .sidebar-logo {
     padding: 1.15rem;

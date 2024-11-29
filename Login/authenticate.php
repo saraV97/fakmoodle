@@ -47,7 +47,7 @@ if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_d
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['ID'] = $ID;
             $_SESSION['userType'] = $userType;
-            header("location:../dashboard/admin/aIndex.php");
+            header("location:../dashboard/admin/aindex.php");
         } else {
             // Incorrect password
             echo 'Incorrect username and/or password!', $userType;

@@ -1,8 +1,17 @@
 <?php
 session_start();
-if ($_SESSION['userType'] == 'student') {
+if ($_SESSION['userType'] == 'admin') {
     header("location:../../login/login.html");
 }
+
+include '../dbConnection.php';
+$conn = OpenCon();
+
+$sql = "SELECT * FROM announcements ORDER BY ID DESC";
+$result = mysqli_query($conn, $sql);
+
+CloseCon($conn);
+
 ?>
 
 <!doctype html>
@@ -24,14 +33,12 @@ if ($_SESSION['userType'] == 'student') {
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
         rel="stylesheet">
-
 </head>
 
 <body>
 
 
     <div class="wrapper">
-
         <aside id="sidebar" class="rounded-4 sticky-top">
             <div class="h-100">
                 <div class="sidebar-logo">
@@ -51,52 +58,57 @@ if ($_SESSION['userType'] == 'student') {
                         Admin Menu
                     </li>
                     <li class="sidebar-item">
-                        <a href="aIndex.php" class="sidebar-link nav-link active">
+                        <a href="sIndex.php" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                            Students
+                        <a href="myCourse.html" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
+                                class="fa-solid fa-file-lines pe-2"></i>
+                            My Course
                         </a>
-                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="addStudent.php" class="sidebar-link">Add Student</a>
+                                <a href="#" class="sidebar-link">Add Student</a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="#" class="sidebar-link">Manage Student</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Subjects
+                        <a href="#" class="sidebar-link " data-bs-target="#posts" aria-expanded="false"><i
+                                class="fa-solid fa-sliders pe-2"></i>
+                            Grades
                         </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <!-- <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="#" class="sidebar-link">Add Subject</a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="#" class="sidebar-link">Manage Subject</a>
                             </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 3</a>
-                            </li>
-                        </ul>
+
+                        </ul> -->
                     </li>
                     <li class="sidebar-item">
-                        <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
-                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                        <a href="#" class="sidebar-link nav-link active" data-bs-target="#auth" aria-expanded="false"><i
+                                class="fa-regular fa-user pe-2"></i>
                             Announcement
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
                                 class="fa-regular fa-user pe-2"></i>
-                            Grades
+                            Tasks
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="https://napier.primo.exlibrisgroup.com/discovery/search?vid=44NAP_INST:44NAP_ALMA_VU1"
+                            class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
+                                class="fa-regular fa-user pe-2"></i>
+                            Resources
                         </a>
                     </li>
 
@@ -104,16 +116,21 @@ if ($_SESSION['userType'] == 'student') {
             </div>
         </aside>
         <div class="main rounded-4">
-            <nav class="navbar navbar-expand px-4 ms-1">
-
-                <div class="display-6">Admin Dashboard</div>
+            <nav class="navbar navbar-expand px-4 ms-1 pb-0">
+                <!-- <button class="btn" id="sidebar-toggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+                <div class="display-6">Student Dashboard</div>
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown pe-4 mt-2 align-self-center">
                             <a href="#" data-bs-toggle="dropdown" class="">
                                 <i class="fa-regular fa-bell h3"></i>
                             </a>
-
+                            <!-- <div class="dropdown-menu dropdown-menu-end">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div> -->
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
@@ -127,68 +144,30 @@ if ($_SESSION['userType'] == 'student') {
                     </ul>
                 </div>
             </nav>
-            <main class="content px-3 py-2 ">
+            <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class=" col-8">
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div class="row">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="h2">Welcome back, Sara</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Total Students</div>
-                                        </div>
-
+                                    <div class=""><?php echo "{$row['subject']}"; ?>
+                                        <span class="small ps-4"><?php echo "{$row['date']}"; ?></span>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Total Subjects</div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h4">Subjects Available</div>
-                                            <div class="">12th November, 2024</div>
-                                        </div>
-
+                                    <div class="card-title fw-bold h5"><?php echo "{$row['title']}"; ?></div>
+                                    <div class="card-text h6"><?php echo "{$row['description']}"; ?></div>
+                                    <div class="small ">Poster by <span
+                                            class="h6 text-success ps-2"><?php echo "{$row['poster']}"; ?></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h5">Tasks</div>
-                                    <div class="col-4">Tasks</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Search Students by ID</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Avegare Student grade</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
+
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </main>
 
