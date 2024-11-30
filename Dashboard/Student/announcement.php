@@ -55,7 +55,7 @@ CloseCon($conn);
                 </div>
                 <ul class="sidebar-nav">
                     <li class="sidebar-header opacity-75">
-                        Admin Menu
+                        Student Menu
                     </li>
                     <li class="sidebar-item">
                         <a href="sIndex.php" class="sidebar-link">
