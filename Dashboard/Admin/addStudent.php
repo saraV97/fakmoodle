@@ -21,30 +21,34 @@ if (isset($_POST['addStudent'])) {
     $password = $_POST['password'];
     $userType = 'student';
 
-    $check = "Select * from student_data where username = $username";
-    $checkUser = mysqli_query($conn, $check);
-    if (mysqli_num_rows($checkUser) == 1) {
-        echo "<script type='text/javascript'>
-        alert('Username already exists. Try a different one.')
-        </script>";
-    } else {
+    // $check = "SELECT * FROM student_data WHERE username = $username";
+    // $checkUser = mysqli_query($conn, $check);
+    // if (mysqli_num_rows($checkUser) == 1) {
+    //     echo "<script type='text/javascript'>
+    //     alert('Username already exists. Try a different one.')
+    //     </script>";
+    // } else {
 
-        $sql = " INSERT INTO student_data(ID,fname,lname,email,phone,age,country,address,course,year,username,password,userType)
+    $sql = " INSERT INTO student_data(ID,fname,lname,email,phone,age,country,address,course,year,username,password,userType)
 VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country', '$address', '$course', '$year', '$username', '$password','$userType')";
 
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            echo "<script type='text/javascript'>
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "<script type='text/javascript'>
         alert('Data Upload Success')
         </script>";
-        } else {
-            echo "<script type='text/javascript'>
+    } else {
+        echo "<script type='text/javascript'>
         alert('Data Upload Failed')
         </script>";
-        }
     }
-    CloseCon($conn);
 }
+
+$sql2 = "SELECT * FROM course ORDER BY courseID";
+$result2 = mysqli_query($conn, $sql2);
+
+CloseCon($conn);
+// }
 ?>
 
 
@@ -103,10 +107,10 @@ VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country',
                     </a>
                     <ul id="pages" class="sidebar-dropdown list-unstyled  ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link nav-link active">Add Student</a>
+                            <a href="addStudent.php" class="sidebar-link nav-link active">Add Student</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Manage Student</a>
+                            <a href="manageStudent.php" class="sidebar-link">Manage Student</a>
                         </li>
                     </ul>
                 </li>
@@ -117,17 +121,17 @@ VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country',
                     </a>
                     <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Add Subject</a>
+                            <a href="addSubject.php" class="sidebar-link">Add Subject</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Manage Subject</a>
+                            <a href="manageSubject.php" class="sidebar-link">Manage Subject</a>
                         </li>
 
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                            class="fa-regular fa-user pe-2"></i>
+                    <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
+                        aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                         Announcement
                     </a>
                 </li>
@@ -157,7 +161,7 @@ VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country',
                             <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="profile.php" class="dropdown-item">Profile</a>
                             <a href="../../login/logout.php" class="dropdown-item">Logout</a>
                         </div>
                     </li>
@@ -179,61 +183,100 @@ VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country',
                                             <div class="col">
                                                 <label class="form-label">First
                                                     Name</label>
-                                                <input type="text" class="form-control" id="fname" name="fname">
+                                                <input type="text" class="form-control" id="fname" name="fname"
+                                                    required>
+
                                             </div>
                                             <div class="col">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lname" name="lname">
+                                                <input type="text" class="form-control" id="lname" name="lname"
+                                                    required>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <div class="mb-3 col">
                                                 <label class="form-label">Email</label>
                                                 <input type="email" class="form-control" id="email" name="email"
-                                                    placeholder="name@example.com">
+                                                    placeholder="name@example.com" required>
                                             </div>
 
                                             <div class="mb-3 col">
                                                 <label class="form-label">Phone</label>
-                                                <input type="tel" class="form-control" id="phone" name="phone"
-                                                    placeholder="+44-9898989898">
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">+44</div>
+                                                    </div>
+
+                                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                                        min="10" max="11" placeholder="9898989898" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <div class="mb-3 col">
                                                 <label class="form-label">Age</label>
-                                                <input type="number" class="form-control" id="age" name="age">
+                                                <input type="number" class="form-control" min="22" max="100" step="1"
+                                                    value="22" id="age" name="age" required>
                                             </div>
 
                                             <div class="mb-3 col">
                                                 <label class="form-label">Country</label>
-                                                <input type="text" class="form-control" id="country" name="country"
-                                                    placeholder="United Kingdom">
+                                                <select class="form-control" id="country" name="country" required>
+                                                    <option selected disabled value="">Choose...</option>
+                                                    <option>United Kingdom</option>
+                                                    <option>France</option>
+                                                    <option>USA</option>
+                                                </select>
+                                                <!-- <input type="text" class="form-control" id="country" name="country"
+                                                    placeholder="United Kingdom" required> -->
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Address</label>
                                             <input type="text" class="form-control" id="address" name="address"
-                                                placeholder="Residential Address">
+                                                placeholder="Residential Address" required>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Course</label>
-                                            <input type="text" class="form-control" id="course" name="course"
-                                                placeholder="Msc Computing">
+                                            <select class="form-control" id="course" name="course" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <?php
+                                                while ($row = mysqli_fetch_assoc($result2)) {
+                                                    ?>
+                                                    <option><?php echo "{$row['courseTitle']}"; ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
+                                        <!-- <div class="mb-3">
+                                            <label class="form-label">Subject 1</label>
+                                            <select class="form-control" id="subject1" name="subject1" required>
+                                                <option selected disabled value="">Choose...</option>
+
+                                                <option>Software Development</option>
+                                                <option>Web Development</option>
+                                                <option>Database System</option>
+                                                <option>Software Development</option>
+                                                <option>Software Development</option>
+                                                <option>Software Development</option>
+
+                                            </select>
+                                        </div> -->
+
                                         <div class="mb-3 row">
                                             <div class="mb-3 col">
                                                 <label class="form-label">Student
                                                     ID</label>
                                                 <input type="number" class="form-control" id="studentid"
-                                                    name="studentID" placeholder="40607796">
+                                                    name="studentID" placeholder="______" required>
                                             </div>
 
                                             <div class="mb-3 col">
                                                 <label class="form-label">Year</label>
                                                 <input class="form-control" type="number" min="1900" max="2099" step="1"
-                                                    value="2024" id="year" name="year" placeholder="2024">
+                                                    value="2024" id="year" name="year" placeholder="2024" required>
                                             </div>
                                         </div>
 
@@ -254,12 +297,16 @@ VALUES ('$studentID','$fname', '$lname', '$email', '$phone', '$age', '$country',
                                     <div class="mb-3 row">
                                         <div class="mb-3 col">
                                             <label class="form-label">Username</label>
-                                            <input type="username" class="form-control" id="username" name="username">
+                                            <input type="username" class="form-control" id="username" name="username"
+                                                minlength="5" required>
+
                                         </div>
 
                                         <div class="mb-3 col">
                                             <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                minlength="5" required>
+
                                         </div>
                                     </div>
                                 </div>

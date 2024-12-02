@@ -38,6 +38,13 @@ if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_d
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['ID'] = $ID;
             $_SESSION['userType'] = $userType;
+
+            $cookie_name = "user";
+            $cookie_value = $_SESSION['name'];
+            // $_SESSION['cookie'] = $cookie_value;
+
+            setcookie("user", $_SESSION['name'], time() + 30 * 24 * 60 * 60); // 86400 = 1 day
+
             header("location:../dashboard/student/sindex.php");
             // echo 'Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!';
         } else if ($_POST['password'] === $password && $userType === 'admin') {

@@ -1,8 +1,22 @@
 <?php
 session_start();
-if ($_SESSION['userType'] == 'student') {
+if ($_SESSION['userType'] == 'student' || $_SESSION['userType'] == '') {
     header("location:../../login/login.html");
 }
+
+include '../dbConnection.php';
+$conn = OpenCon();
+
+$sql = "SELECT * FROM student_data WHERE userType = 'admin'";
+$result = mysqli_query($conn, $sql);
+
+$students = "SELECT COUNT(ID) AS count FROM student_data WHERE userType = 'student'";
+$result1 = mysqli_query($conn, $students);
+
+date_default_timezone_set('Europe/London');
+$date = date("jS F Y", time());
+
+CloseCon($conn);
 ?>
 
 <!doctype html>
@@ -66,7 +80,7 @@ if ($_SESSION['userType'] == 'student') {
                                 <a href="addStudent.php" class="sidebar-link">Add Student</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Student</a>
+                                <a href="manageStudent.php" class="sidebar-link">Manage Student</a>
                             </li>
                         </ul>
                     </li>
@@ -77,14 +91,12 @@ if ($_SESSION['userType'] == 'student') {
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Subject</a>
+                                <a href="addSubject.php" class="sidebar-link">Add Subject</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Subject</a>
+                                <a href="manageSubject.php" class="sidebar-link">Manage Subject</a>
                             </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 3</a>
-                            </li>
+
                         </ul>
                     </li>
                     <li class="sidebar-item">
@@ -127,70 +139,148 @@ if ($_SESSION['userType'] == 'student') {
                     </ul>
                 </div>
             </nav>
-            <main class="content px-3 py-2 ">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class=" col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h2">Welcome back, Sara</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Total Students</div>
-                                        </div>
-
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h6">Total Subjects</div>
-                                        </div>
-
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <main class="content px-3 py-2 ">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class=" col-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h2">Welcome back, <?php
+                                        echo $row["fname"];
+                                        ?></div>
+                                        <div class=""><?php echo $date; ?></div>
                                     </div>
                                 </div>
-                                <div class="col-9">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="h4">Subjects Available</div>
-                                            <div class="">12th November, 2024</div>
-                                        </div>
 
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="h6">Total Students</div>
+                                                <div class="h4 fw-bold text-center">
+                                                    <?php
+                                                    $row1 = mysqli_fetch_assoc($result1);
+                                                    echo $row1["count"];
+                                                    ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="h6">Total Cources</div>
+                                                <div class="text-center h4 fw-bold">2</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="h6">Subjects Available</div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="h5 fw-bold pb-2">MSc in Computing</div>
+                                                        <div class="card p-2">
+                                                            <div class="h6">Software Development</div>
+                                                            <hr class="pt-1 m-0">
+                                                            <div class="h6">Web Development</div>
+                                                            <hr class="pt-1 m-0">
+                                                            <div class="h6">Database System</div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-6 ">
+                                                        <div class="h5 fw-bold pb-2">MSc in Env. Scrience</div>
+                                                        <div class="card p-2">
+                                                            <div class="h6">Environmental Chemistry</div>
+                                                            <hr class="pt-1 m-0">
+                                                            <div class="h6">Ecology and Biodiversity</div>
+                                                            <hr class="pt-1 m-0">
+                                                            <div class="h6">Env. Management</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class=" col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h6">To-Do List</div>
+                                        <div class="d-flex justify-content-between">
+                                            <input type="text" class="w-75 border-1 rounded-3">
+                                            <button class="btn btn-light py-0 border-1 border-black">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class=" py-3">
+                                            <ul class="p-0">
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                                <li class="d-flex justify-content-between">
+                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
+                                                    <span>
+                                                        <button class="btn btn-success py-0 border-1 border-black">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h5">Tasks</div>
-                                    <div class="col-4">Tasks</div>
+                            <div class=" col-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h6">Search Students by ID</div>
+                                        <div class="d-flex">
+                                            <input type="text" class="w-75 px-2 rounded-3 border-1"
+                                                placeholder="Enter student ID">
+                                            <button class="btn btn-secondary ms-4">Search by ID</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Search Students by ID</div>
-                                    <div class="">12th November, 2024</div>
+                            <div class=" col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="h6">Avegare Student Score</div>
+                                        <div class="h4 fw-bold text-center">81%</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="h6">Avegare Student grade</div>
-                                    <div class="">12th November, 2024</div>
-                                </div>
-                            </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
+                <?php
+            }
+            ?>
 
 
         </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['userType'] == 'admin') {
+if ($_SESSION['userType'] == 'admin' || $_SESSION['userType'] == '') {
     header("location:../../login/login.html");
 }
 include '../dbConnection.php';
@@ -277,14 +277,14 @@ CloseCon($conn);
                             <div class=" col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="h6">Tasks</div>
+                                        <div class="h6">To-Do List</div>
                                         <div class="d-flex justify-content-between">
                                             <input type="text" class="w-75 border-1 rounded-3">
                                             <button class="btn btn-light py-0 border-1 border-black">
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
                                         </div>
-                                        <div class="small py-3">
+                                        <div class=" py-3">
                                             <ul class="p-0">
                                                 <li class="d-flex justify-content-between">
                                                     <span class="ps-0 w-75">- do course work work do course work do.</span>
