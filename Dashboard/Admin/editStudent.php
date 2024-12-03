@@ -212,7 +212,8 @@ CloseCon($conn);
 
                                                 <div class="mb-3 col">
                                                     <label class="form-label">Phone</label>
-                                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                                    <input type="tel" class="form-control" id="phone" minlength="10"
+                                                        name="phone" pattern="[0-9]{10}"
                                                         value="<?php echo $row['phone']; ?>" required>
                                                 </div>
                                             </div>

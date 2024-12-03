@@ -10,6 +10,9 @@ $conn = OpenCon();
 $sql = "SELECT * FROM announcements ORDER BY ID DESC";
 $result = mysqli_query($conn, $sql);
 
+$sql1 = "SELECT * FROM announcements ORDER BY ID DESC LIMIT 1";
+$result1 = mysqli_query($conn, $sql1);#
+
 CloseCon($conn);
 
 ?>
@@ -110,14 +113,27 @@ CloseCon($conn);
                 <div class="display-6">Student Dashboard</div>
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown pe-4 mt-2 align-self-center">
-                            <a href="#" data-bs-toggle="dropdown" class="">
-                                <i class="fa-regular fa-bell h3"></i>
-                            </a>
-                            <!-- <div class="dropdown-menu dropdown-menu-end">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Logout</a>
-                    </div> -->
+                        <?php
+                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                            ?>
+                            <li class="nav-item dropdown pe-4 mt-2 align-self-center">
+                                <a href="#" data-bs-toggle="dropdown" class="">
+                                    <i class="fa-regular fa-bell h3"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="#" class="dropdown-item">
+
+                                        <div class="small ">You have a new Announcement for
+                                            <span class="fw-bold"><?php echo "{$row1['subject']}"; ?></span>
+                                        </div>
+                                        <div class="small">Poster by <span
+                                                class="small text-success ps-1"><?php echo "{$row1['poster']}"; ?></span>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </li>
+                        <?php } ?>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">

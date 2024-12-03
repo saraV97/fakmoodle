@@ -18,6 +18,14 @@ $result2 = mysqli_query($conn, $sql2);
 date_default_timezone_set('Europe/London');
 $date = date("jS F Y", time());
 
+$course = $_SESSION['course'];
+// echo $course;
+$sql1 = "SELECT * FROM course WHERE courseTitle = ?";
+$stmt = $conn->prepare($sql1);
+$stmt->bind_param('s', $course);
+$stmt->execute();
+$result1 = $stmt->get_result();
+
 CloseCon($conn);
 
 ?>
@@ -256,26 +264,37 @@ CloseCon($conn);
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="h6">Your Subjects</div>
-
-                                            <div class="card-body border rounded-3 py-2 mb-1">
-                                                <div class="d-flex flex-row justify-content-between">
-                                                    <div class="fw-bold align-content-center">Software Development</div>
-                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
+                                            <?php
+                                            while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                ?>
+                                                <div class="card-body border rounded-3 py-2 mb-1">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <div class="fw-bold align-content-center">
+                                                            <?php echo "{$row1['subject1']}"; ?>
+                                                        </div>
+                                                        <a href="subject.php?subject=<?php echo "{$row1['subject1']}"; ?>"
+                                                            class="btn btn-outline-primary py-1">View</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-body border rounded-3 py-2 mb-1">
-                                                <div class="d-flex flex-row justify-content-between">
-                                                    <div class="fw-bold align-content-center">Web Development</div>
-                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
+                                                <div class="card-body border rounded-3 py-2 mb-1">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <div class="fw-bold align-content-center">
+                                                            <?php echo "{$row1['subject2']}"; ?>
+                                                        </div>
+                                                        <a href="subject.php?subject=<?php echo "{$row1['subject2']}"; ?>"
+                                                            class="btn btn-outline-primary py-1">View</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-body border rounded-3 py-2">
-                                                <div class="d-flex flex-row justify-content-between">
-                                                    <div class="fw-bold align-content-center">Database Systems</div>
-                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
+                                                <div class="card-body border rounded-3 py-2">
+                                                    <div class="d-flex flex-row justify-content-between">
+                                                        <div class="fw-bold align-content-center">
+                                                            <?php echo "{$row1['subject3']}"; ?>
+                                                        </div>
+                                                        <a href="subject.php?subject=<?php echo "{$row1['subject3']}"; ?>"
+                                                            class="btn btn-outline-primary py-1">View</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>

@@ -262,7 +262,7 @@ CloseCon($conn);
                         <div class=" col-4">
                             <div class="card">
                                 <div class="card-body d-flex flex-column text-center">
-                                    <div class="h6 pb-3">Upcomming Classes</div>
+                                    <div class="h6 pb-3">People to know</div>
                                     <li class="hstack">
                                         <div class="col-4">
                                             <img src="https://img.freepik.com/free-photo/elegant-young-teacher-with-brunette-hair-stylish-light-shirt-black-striped-suit-glasses-holding-writings-pen-giving-lecture_197531-24666.jpg?t=st=1733195339~exp=1733198939~hmac=e3f71899d5b5d4003ac9d215ec7e633d44f09900997a9431fb30eb6d12375b3f&w=826"

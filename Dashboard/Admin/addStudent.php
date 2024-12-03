@@ -208,7 +208,8 @@ CloseCon($conn);
                                                     </div>
 
                                                     <input type="tel" class="form-control" id="phone" name="phone"
-                                                        min="10" max="11" placeholder="9898989898" required>
+                                                        minlength="10" pattern="[0-9]{10}" placeholder="9898989898"
+                                                        required>
                                                 </div>
                                             </div>
                                         </div>
