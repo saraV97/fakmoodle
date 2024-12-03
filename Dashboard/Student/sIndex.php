@@ -1,13 +1,22 @@
 <?php
 session_start();
 if ($_SESSION['userType'] == 'admin' || $_SESSION['userType'] == '') {
-    header("location:../../login/login.html");
+    header("location:../../login/login.php");
 }
 include '../dbConnection.php';
 $conn = OpenCon();
 
+$name = $_SESSION['name'];
+
 $sql = "SELECT * FROM announcements ORDER BY ID DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);#
+
+$ID = $_SESSION["ID"];
+$sql2 = "SELECT * FROM student_data WHERE ID = $ID";
+$result2 = mysqli_query($conn, $sql2);
+
+date_default_timezone_set('Europe/London');
+$date = date("jS F Y", time());
 
 CloseCon($conn);
 
@@ -57,50 +66,23 @@ CloseCon($conn);
                         Student Menu
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link nav-link active">
+                        <a href="sIndex.php" class="sidebar-link nav-link active">
                             <i class="fa-solid fa-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="myCourse.html" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
+                        <a href="myCourse.php" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
                                 class="fa-solid fa-file-lines pe-2"></i>
                             My Course
                         </a>
-                        <!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Student</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Student</a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link " data-bs-target="#posts" aria-expanded="false"><i
-                                class="fa-solid fa-sliders pe-2"></i>
-                            Grades
-                        </a>
-                        <!-- <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Subject</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Subject</a>
-                            </li>
 
-                        </ul> -->
                     </li>
+
                     <li class="sidebar-item">
                         <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
                             aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                             Announcement
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                                class="fa-regular fa-user pe-2"></i>
-                            Tasks
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -110,6 +92,20 @@ CloseCon($conn);
                             Resources
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link " data-bs-target="#posts" aria-expanded="false"><i
+                                class="fa-solid fa-sliders pe-2"></i>
+                            Grades
+                        </a>
+
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
+                                class="fa-regular fa-user pe-2"></i>
+                            Tasks
+                        </a>
+                    </li>
+
 
                 </ul>
             </div>
@@ -133,7 +129,7 @@ CloseCon($conn);
                                     <a href="#" class="dropdown-item">
 
                                         <div class="small ">You have a new Announcement for
-                                            <span class="fw-bold"><?php echo "{$row['subject']}"; ?></span>
+                                            <span class="fw-bold"><?php echo "$name"; ?></span>
                                         </div>
                                         <div class="small">Poster by <span
                                                 class="small text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
@@ -154,172 +150,189 @@ CloseCon($conn);
                         </ul>
                     </div>
                 </nav>
-                <main class="content px-3 py-2">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="h2">Welcome back, Sara</div>
-                                        <div class="">12th November, 2024</div>
+                <?php
+                while ($row2 = mysqli_fetch_assoc($result2)) {
+                    ?>
+                    <main class="content px-3 py-2">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="h2">Welcome back, <?php
+                                            echo $row2["fname"];
+                                            ?></div>
+                                            <div class=""><?php echo $date; ?></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="h6">Your Course</div>
-                                                <div class="fw-bold h5">MSc in Computing</div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <div class="">Joined Year</div>
-                                                        <div class="fw-bold h6 pb-0 mb-0">2024</div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="h6">Your Course</div>
+                                                    <div class="fw-bold h5"><?php
+                                                    echo $row2["course"];
+                                                    ?></div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <div class="">Joined Year</div>
+                                                            <div class="fw-bold h6 pb-0 mb-0"><?php
+                                                            echo $row2["year"];
+                                                            ?></div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="">Course Duration</div>
+                                                            <div class="fw-bold h6 pb-0 mb-0">1 Year</div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <div class="">Course Duration</div>
-                                                        <div class="fw-bold h6 pb-0 mb-0">1 Year</div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="card">
+
+                                                <div class="card-body">
+                                                    <div class="small pb-1">You have a new Announcement</div>
+                                                    <hr class="pb-1 m-0">
+                                                    <div class="fw-bold"><?php echo "{$row['subject']}"; ?>
+                                                    </div>
+                                                    <div class=""><?php echo "{$row['description']}"; ?>
+                                                    </div>
+                                                    <div class="small fw-bold pt-2">Poster by <span
+                                                            class="h6 text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="card">
+                                </div>
+                                <div class=" col-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="h5 pb-3 text-center">Upcomming Classes</div>
+                                            <div>
+                                                <ul class="m-0 p-0 text-center">
+                                                    <li class="hstack mb-3">
+                                                        <div class="col-3">
+                                                            <span class=" fw-bold">10 AM</span>
+                                                            <div class="small">A17</div>
+                                                        </div>
+                                                        <div class="vr"></div>
+                                                        <div class="col-8 text-center ps-4">
+                                                            <span class="h6 fw-bold">Web Development</span>
+                                                            <div>John Oliver</div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="hstack mb-3">
+                                                        <div class="col-3">
+                                                            <span class=" fw-bold">12 PM</span>
+                                                            <div class="small">JKCC-C1</div>
+                                                        </div>
+                                                        <div class="vr"></div>
+                                                        <div class="col-8 text-center ps-4">
+                                                            <span class="h6 fw-bold">Lab Session - WD</span>
+                                                            <div>James P</div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="hstack">
+                                                        <div class="col-3">
+                                                            <span class=" fw-bold">4 PM</span>
+                                                            <div class="small">B55</div>
+                                                        </div>
+                                                        <div class="vr"></div>
+                                                        <div class="col-8 text-center ps-4">
+                                                            <span class="h6 fw-bold">Database System</span>
+                                                            <div>Sam Connie</div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-8">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="h6">Your Subjects</div>
 
-                                            <div class="card-body">
-                                                <div class="small pb-1">You have a new Announcement</div>
-                                                <hr class="pb-1 m-0">
-                                                <div class="fw-bold"><?php echo "{$row['subject']}"; ?>
+                                            <div class="card-body border rounded-3 py-2 mb-1">
+                                                <div class="d-flex flex-row justify-content-between">
+                                                    <div class="fw-bold align-content-center">Software Development</div>
+                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
                                                 </div>
-                                                <div class=""><?php echo "{$row['description']}"; ?>
+                                            </div>
+                                            <div class="card-body border rounded-3 py-2 mb-1">
+                                                <div class="d-flex flex-row justify-content-between">
+                                                    <div class="fw-bold align-content-center">Web Development</div>
+                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
                                                 </div>
-                                                <div class="small fw-bold pt-2">Poster by <span
-                                                        class="h6 text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
+                                            </div>
+                                            <div class="card-body border rounded-3 py-2">
+                                                <div class="d-flex flex-row justify-content-between">
+                                                    <div class="fw-bold align-content-center">Database Systems</div>
+                                                    <a href="subject.php" class="btn btn-outline-primary py-1">View</a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="h5 pb-3 text-center">Upcomming Classes</div>
-                                        <div>
-                                            <ul class="m-0 p-0 text-center">
-                                                <li class="hstack mb-3">
-                                                    <div class="col-3">
-                                                        <span class=" fw-bold">10 AM</span>
-                                                        <div class="small">A17</div>
-                                                    </div>
-                                                    <div class="vr"></div>
-                                                    <div class="col-8 text-center ps-4">
-                                                        <span class="h6 fw-bold">Web Development</span>
-                                                        <div>John Oliver</div>
-                                                    </div>
-                                                </li>
-                                                <li class="hstack mb-3">
-                                                    <div class="col-3">
-                                                        <span class=" fw-bold">12 PM</span>
-                                                        <div class="small">JKCC-C1</div>
-                                                    </div>
-                                                    <div class="vr"></div>
-                                                    <div class="col-8 text-center ps-4">
-                                                        <span class="h6 fw-bold">Lab Session - WD</span>
-                                                        <div>James P</div>
-                                                    </div>
-                                                </li>
-                                                <li class="hstack">
-                                                    <div class="col-3">
-                                                        <span class=" fw-bold">4 PM</span>
-                                                        <div class="small">B55</div>
-                                                    </div>
-                                                    <div class="vr"></div>
-                                                    <div class="col-8 text-center ps-4">
-                                                        <span class="h6 fw-bold">Database System</span>
-                                                        <div>Sam Connie</div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                <div class=" col-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="h6">To-Do List</div>
+                                            <div class="d-flex justify-content-between">
+                                                <input type="text" class="w-75 border-1 rounded-3">
+                                                <button class="btn btn-light py-0 border-1 border-black">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class=" py-3">
+                                                <ul class="p-0">
+                                                    <li class="d-flex justify-content-between pb-1">
+                                                        <span class="ps-0 w-75">- Attend Lectures/Classes</span>
+                                                        <span>
+                                                            <button class="btn btn-success py-0 border-1 border-black">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between pb-1">
+                                                        <span class="ps-0 w-75">- Prepare for Exams next week.</span>
+                                                        <span>
+                                                            <button class="btn btn-success py-0 border-1 border-black">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between pb-1">
+                                                        <span class="ps-0 w-75">- Pay Tuition Fees.</span>
+                                                        <span>
+                                                            <button class="btn btn-success py-0 border-1 border-black">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between pb-1">
+                                                        <span class="ps-0 w-75">- Return library books.</span>
+                                                        <span>
+                                                            <button class="btn btn-success py-0 border-1 border-black">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" col-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="h6">Your Subjects</div>
-                                        <div class="card-body border rounded-3 py-2 mb-1">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <div class="fw-bold align-content-center">Software Development 1</div>
-                                                <a href="subject.html" class="btn btn-outline-primary py-1">View</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body border rounded-3 py-2 mb-1">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <div class="fw-bold align-content-center">Web Development</div>
-                                                <a href="#" class="btn btn-outline-primary py-1">View</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body border rounded-3 py-2">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <div class="fw-bold align-content-center">Database Systems</div>
-                                                <a href="#" class="btn btn-outline-primary py-1">View</a>
-                                            </div>
-                                        </div>
 
-
-                                    </div>
-                                </div>
                             </div>
-                            <div class=" col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="h6">To-Do List</div>
-                                        <div class="d-flex justify-content-between">
-                                            <input type="text" class="w-75 border-1 rounded-3">
-                                            <button class="btn btn-light py-0 border-1 border-black">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </button>
-                                        </div>
-                                        <div class=" py-3">
-                                            <ul class="p-0">
-                                                <li class="d-flex justify-content-between">
-                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                    <span>
-                                                        <button class="btn btn-success py-0 border-1 border-black">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </span>
-                                                </li>
-                                                <li class="d-flex justify-content-between">
-                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                    <span>
-                                                        <button class="btn btn-success py-0 border-1 border-black">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </span>
-                                                </li>
-                                                <li class="d-flex justify-content-between">
-                                                    <span class="ps-0 w-75">- do course work work do course work do.</span>
-                                                    <span>
-                                                        <button class="btn btn-success py-0 border-1 border-black">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
-                </main>
-
+                    </main>
+                <?php } ?>
 
             </div>
             <?php

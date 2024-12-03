@@ -1,10 +1,11 @@
 <?php
 session_start();
 if ($_SESSION['userType'] == 'student') {
-    header("location:../../login/login.html");
+    header("location:../../login/login.php");
 }
 include '../dbConnection.php';
 $conn = OpenCon();
+
 
 if (isset($_POST['addAnnouncement'])) {
     date_default_timezone_set('Europe/London');
@@ -28,8 +29,19 @@ VALUES ('$subject','$title', '$description', '$date', '$poster')";
         alert('Posting Failed')
         </script>";
     }
-    CloseCon($conn);
+
 }
+
+$course = $_SESSION['course'] ?? 'MSc in Computing';
+// print_r($_SESSION);
+
+$sql1 = "SELECT * FROM course WHERE courseTitle = ?";
+$stmt = $conn->prepare($sql1);
+$stmt->bind_param('s', $course);
+$stmt->execute();
+$result1 = $stmt->get_result();
+
+CloseCon($conn);
 ?>
 
 <!doctype html>
@@ -91,7 +103,7 @@ VALUES ('$subject','$title', '$description', '$date', '$poster')";
                                 <a href="addStudent.php" class="sidebar-link">Add Student</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Student</a>
+                                <a href="manageStudent.php" class="sidebar-link">Manage Student</a>
                             </li>
                         </ul>
                     </li>
@@ -177,15 +189,28 @@ VALUES ('$subject','$title', '$description', '$date', '$poster')";
                                     <div class="h4 text-center">Post a new Announcemrnt</div>
                                     <div class="">
                                         <form class="my-4" method="POST" action="#">
+                                            <?php
+                                            $row1 = mysqli_fetch_assoc($result1);
+                                            ?>
                                             <div class="mb-3">
                                                 <label for="announcementTitle" class="form-label">Subject</label>
-                                                <input type="text" class="form-control" id="subject" name="subject"
-                                                    placeholder="Web Development">
+                                                <!-- <input type="text" class="form-control" id="subject" name="subject"
+                                                    placeholder="Web Development"> -->
+
+                                                <select class="form-control" id="subject" name="subject"
+                                                    placeholder="Web Development" required>
+                                                    <option selected disabled value="">Choose...</option>
+                                                    <option><?php echo "{$row1['subject1']}"; ?></option>
+                                                    <option><?php echo "{$row1['subject2']}"; ?></option>
+                                                    <option><?php echo "{$row1['subject3']}"; ?></option>
+                                                </select>
                                             </div>
+                                            <?php
+                                            ?>
                                             <div class="mb-3">
                                                 <label for="announcementTitle" class="form-label">Title</label>
                                                 <input type="text" class="form-control" id="announcementTitle"
-                                                    name="title" placeholder="Announcement Title">
+                                                    name="title" placeholder="Announcement Title" required>
                                             </div>
 
                                             <div class="mb-3">

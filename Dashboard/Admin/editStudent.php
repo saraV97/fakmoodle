@@ -114,10 +114,10 @@ CloseCon($conn);
                     </a>
                     <ul id="pages" class="sidebar-dropdown list-unstyled  ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link nav-link active">Add Student</a>
+                            <a href="addStudent.php" class="sidebar-link ">Add Student</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Manage Student</a>
+                            <a href="manageStudent.php" class="sidebar-link nav-link active">Manage Student</a>
                         </li>
                     </ul>
                 </li>
@@ -128,17 +128,17 @@ CloseCon($conn);
                     </a>
                     <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Add Subject</a>
+                            <a href="addSubject.php" class="sidebar-link">Add Subject</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Manage Subject</a>
+                            <a href="manageSybject.php" class="sidebar-link">Manage Subject</a>
                         </li>
 
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                            class="fa-regular fa-user pe-2"></i>
+                    <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
+                        aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                         Announcement
                     </a>
                 </li>

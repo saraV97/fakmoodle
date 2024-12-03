@@ -17,7 +17,7 @@ if (!isset($_POST['username'], $_POST['password'])) {
     exit('Please fill both the username and password fields!');
 }
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_data WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT ID,username, password, course, userType FROM student_data WHERE username = ?')) {
     // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
     $stmt->bind_param('s', $_POST['username']);
     $stmt->execute();
@@ -25,7 +25,7 @@ if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_d
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($ID, $username, $password, $userType);
+        $stmt->bind_result($ID, $username, $password, $course, $userType);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -37,6 +37,7 @@ if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_d
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['ID'] = $ID;
+            $_SESSION['course'] = $course;
             $_SESSION['userType'] = $userType;
 
             $cookie_name = "user";
@@ -53,7 +54,14 @@ if ($stmt = $con->prepare('SELECT ID,username, password, userType FROM student_d
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['ID'] = $ID;
+            $_SESSION['course'] = $course;
             $_SESSION['userType'] = $userType;
+
+            $cookie_name = "user";
+            $cookie_value = $_SESSION['name'];
+            // $_SESSION['cookie'] = $cookie_value;
+
+            setcookie("user", $_SESSION['name'], time() + 30 * 24 * 60 * 60);
             header("location:../dashboard/admin/aindex.php");
         } else {
             // Incorrect password

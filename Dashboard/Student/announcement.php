@@ -64,51 +64,38 @@ CloseCon($conn);
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="myCourse.html" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
+                        <a href="myCourse.php" class="sidebar-link " data-bs-target="#pages" aria-expanded="false"><i
                                 class="fa-solid fa-file-lines pe-2"></i>
                             My Course
                         </a>
-                        <!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Student</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Student</a>
-                            </li>
-                        </ul> -->
+
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="announcement.php" class="sidebar-link nav-link active" data-bs-target="#auth"
+                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                            Announcement
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="https://napier.primo.exlibrisgroup.com/discovery/search?vid=44NAP_INST:44NAP_ALMA_VU1"
+                            class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
+                                class="fa-regular fa-user pe-2"></i>
+                            Resources
+                        </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link " data-bs-target="#posts" aria-expanded="false"><i
                                 class="fa-solid fa-sliders pe-2"></i>
                             Grades
                         </a>
-                        <!-- <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Subject</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Manage Subject</a>
-                            </li>
 
-                        </ul> -->
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link nav-link active" data-bs-target="#auth" aria-expanded="false"><i
-                                class="fa-regular fa-user pe-2"></i>
-                            Announcement
-                        </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
                                 class="fa-regular fa-user pe-2"></i>
                             Tasks
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="https://napier.primo.exlibrisgroup.com/discovery/search?vid=44NAP_INST:44NAP_ALMA_VU1"
-                            class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                                class="fa-regular fa-user pe-2"></i>
-                            Resources
                         </a>
                     </li>
 

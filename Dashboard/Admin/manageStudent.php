@@ -89,17 +89,17 @@ CloseCon($conn);
                     </a>
                     <ul id="posts" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Add Subject</a>
+                            <a href="addSubject.php" class="sidebar-link">Add Subject</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Manage Subject</a>
+                            <a href="manageSubject.php" class="sidebar-link">Manage Subject</a>
                         </li>
 
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" aria-expanded="false"><i
-                            class="fa-regular fa-user pe-2"></i>
+                    <a href="announcement.php" class="sidebar-link collapsed" data-bs-target="#auth"
+                        aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
                         Announcement
                     </a>
                 </li>

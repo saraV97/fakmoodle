@@ -1,15 +1,3 @@
-<?php
-session_start();
-if (!isset($_COOKIE["user"])) {
-  // header("location:login.phpa");
-} else if ($_SESSION['userType'] == 'admin') {
-  header("location:../Dashboard/Admin/aIndex.php");
-} else {
-  header("location:../Dashboard/Student/sIndex.php");
-}
-
-?>
-
 <!doctype html>
 <html lang="en">
 
