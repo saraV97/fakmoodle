@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 body {
-    font-family: "Titillium Web", sans-serif !important;;
+    font-family: "Titillium Web", sans-serif !important;
   }
 /* .box{
     justify-content: center;
@@ -28,23 +28,23 @@ body {
 .highlights{
     margin-top: -80px;
 }
-.noto-sans-container {
+/* .noto-sans-container {
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
     font-variation-settings:
       "wdth" 100;
-  }
+  } */
 .news {
     background-color: rgb(237, 250, 255);
     border-radius: 50px 50px 50px 50px;
     background-position: center bottom;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-size: cover;
     padding: 20px 0px;
   }
-.main-banner button:hover { background-color: rgb(255, 255, 110) !important; }
+.main-banner a:hover { background-color: rgb(255, 255, 110) !important; }
 nav.navbar li:hover a {
     background-color: rgba(118, 118, 118, 0.1);
   }

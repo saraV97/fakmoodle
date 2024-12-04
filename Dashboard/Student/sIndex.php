@@ -59,14 +59,14 @@ CloseCon($conn);
             <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="../../index.html"
-                        class="navbar-brand fw-bold d-flex flex-row justify-content-center align-items-center">
+                        class="navbar-brand fw-bold d-flex flex-column justify-content-center align-items-center">
                         <svg id="logo-85" width="40" height="40" viewBox="0 0 40 40" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path class="ccustom" fill-rule="evenodd" clip-rule="evenodd"
                                 d="M10 0C15.5228 0 20 4.47715 20 10V0H30C35.5228 0 40 4.47715 40 10C40 15.5228 35.5228 20 30 20C35.5228 20 40 24.4772 40 30C40 32.7423 38.8961 35.2268 37.1085 37.0334L37.0711 37.0711L37.0379 37.1041C35.2309 38.8943 32.7446 40 30 40C27.2741 40 24.8029 38.9093 22.999 37.1405C22.9756 37.1175 22.9522 37.0943 22.9289 37.0711C22.907 37.0492 22.8852 37.0272 22.8635 37.0051C21.0924 35.2009 20 32.728 20 30C20 35.5228 15.5228 40 10 40C4.47715 40 0 35.5228 0 30V20H10C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM18 10C18 14.4183 14.4183 18 10 18V2C14.4183 2 18 5.58172 18 10ZM38 30C38 25.5817 34.4183 22 30 22C25.5817 22 22 25.5817 22 30H38ZM2 22V30C2 34.4183 5.58172 38 10 38C14.4183 38 18 34.4183 18 30V22H2ZM22 18V2L30 2C34.4183 2 38 5.58172 38 10C38 14.4183 34.4183 18 30 18H22Z"
                                 fill="#5417D7"></path>
                         </svg>
-                        <div class="h6 pt-2 px-2 fw-bold">FakeMoodle</div>
+                        <div class="h5 pt-2 px-2 fw-light">Fake Moodle</div>
                     </a>
                 </div>
                 <ul class="sidebar-nav">
@@ -137,7 +137,7 @@ CloseCon($conn);
                                     <a href="#" class="dropdown-item">
 
                                         <div class="small ">You have a new Announcement for
-                                            <span class="fw-bold"><?php echo "$name"; ?></span>
+                                            <span class="fw-bold"><?php echo "{$row['subject']}"; ?></span>
                                         </div>
                                         <div class="small">Poster by <span
                                                 class="small text-success ps-1"><?php echo "{$row['poster']}"; ?></span>
@@ -151,7 +151,7 @@ CloseCon($conn);
                                     <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="#" class="dropdown-item">Profile</a>
+                                    <a href="profile.php" class="dropdown-item">Profile</a>
                                     <a href="../../Login/logout.php" class="dropdown-item">Logout</a>
                                 </div>
                             </li>
@@ -311,7 +311,7 @@ CloseCon($conn);
                                             <div class=" py-3">
                                                 <ul class="p-0">
                                                     <li class="d-flex justify-content-between pb-1">
-                                                        <span class="ps-0 w-75">- Attend Lectures/Classes</span>
+                                                        <span class="ps-0 w-75">Attend Lectures/Classes</span>
                                                         <span>
                                                             <button class="btn btn-success py-0 border-1 border-black">
                                                                 <i class="fa-solid fa-check"></i>
@@ -319,7 +319,7 @@ CloseCon($conn);
                                                         </span>
                                                     </li>
                                                     <li class="d-flex justify-content-between pb-1">
-                                                        <span class="ps-0 w-75">- Prepare for Exams next week.</span>
+                                                        <span class="ps-0 w-75">Prepare for Exams next week.</span>
                                                         <span>
                                                             <button class="btn btn-success py-0 border-1 border-black">
                                                                 <i class="fa-solid fa-check"></i>
@@ -327,7 +327,7 @@ CloseCon($conn);
                                                         </span>
                                                     </li>
                                                     <li class="d-flex justify-content-between pb-1">
-                                                        <span class="ps-0 w-75">- Pay Tuition Fees.</span>
+                                                        <span class="ps-0 w-75">Pay Tuition Fees.</span>
                                                         <span>
                                                             <button class="btn btn-success py-0 border-1 border-black">
                                                                 <i class="fa-solid fa-check"></i>
@@ -335,7 +335,7 @@ CloseCon($conn);
                                                         </span>
                                                     </li>
                                                     <li class="d-flex justify-content-between pb-1">
-                                                        <span class="ps-0 w-75">- Return library books.</span>
+                                                        <span class="ps-0 w-75">Return library books.</span>
                                                         <span>
                                                             <button class="btn btn-success py-0 border-1 border-black">
                                                                 <i class="fa-solid fa-check"></i>

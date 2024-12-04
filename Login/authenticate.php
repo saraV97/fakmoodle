@@ -44,7 +44,7 @@ if ($stmt = $con->prepare('SELECT ID,username, password, course, userType FROM s
             $cookie_value = $_SESSION['name'];
             // $_SESSION['cookie'] = $cookie_value;
 
-            setcookie("user", $_SESSION['name'], time() + 30 * 24 * 60 * 60); // 86400 = 1 day
+            setcookie("user", $_SESSION['name'], time() + 30 * 24 * 60 * 60);
 
             header("location:../dashboard/student/sindex.php");
             // echo 'Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!';
@@ -65,11 +65,17 @@ if ($stmt = $con->prepare('SELECT ID,username, password, course, userType FROM s
             header("location:../dashboard/admin/aindex.php");
         } else {
             // Incorrect password
-            echo 'Incorrect username and/or password!', $userType;
+            echo "<script type='text/javascript'> 
+        alert('Incorrect Username or Password. Try Again.');
+        window.location.href = 'login.php'; 
+      </script>";
         }
     } else {
         // Incorrect username
-        echo 'Incorrect username and/or password!';
+        echo "<script type='text/javascript'> 
+        alert('User not Registered. Contact Us.');
+        window.location.href = 'login.php';
+      </script>";
     }
 
 

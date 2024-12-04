@@ -1,18 +1,12 @@
 <?php
 session_start();
-if ($_SESSION['userType'] == 'student' || $_SESSION['userType'] == '') {
-    header("location:../../login/login.html");
-}
+
 include '../dbConnection.php';
-if (isset($_GET['student_id'])) {
-    echo $_GET['student_id'];
-}
-
 $conn = OpenCon();
+$userT = $_SESSION['userType'];
 
-
-
-$sql = "SELECT * FROM student_data WHERE userType = 'student'";
+$name = $_SESSION['name'];
+$sql = "SELECT * FROM student_data WHERE username = '$name'";
 $result = mysqli_query($conn, $sql);
 
 CloseCon($conn);
@@ -75,10 +69,10 @@ CloseCon($conn);
                     </a>
                     <ul id="pages" class="sidebar-dropdown list-unstyled  ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="addStudent.php" class="sidebar-link">Add Student</a>
+                            <a href="addStudent.php" class="sidebar-link ">Add Student</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="manageStudent.php" class="sidebar-link nav-link active">Manage Student</a>
+                            <a href="manageStudent.php" class="sidebar-link">Manage Student</a>
                         </li>
                     </ul>
                 </li>
@@ -116,7 +110,7 @@ CloseCon($conn);
     <div class="main rounded-4">
         <nav class="navbar navbar-expand px-4 ms-1">
 
-            <div class="display-6">Manage Student</div>
+            <div class="display-6">Your Profile</div>
             <div class="navbar-collapse navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown pe-4 mt-2 align-self-center">
@@ -129,7 +123,7 @@ CloseCon($conn);
                             <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="../profile.php" class="dropdown-item">Profile</a>
+                            <a href="profile.php" class="dropdown-item">Profile</a>
                             <a href="../../login/logout.php" class="dropdown-item">Logout</a>
                         </div>
                     </li>
@@ -137,57 +131,73 @@ CloseCon($conn);
             </div>
         </nav>
         <main class="content px-3 py-2 ">
-            <div class="card">
-                <div class="card-body">
-                    <div class="h6">Search Students by ID</div>
-                    <div class="d-flex">
-                        <input type="text" class="w-75 px-2 rounded-3 border-1" placeholder="Enter student ID">
-                        <button class="btn btn-secondary ms-4">Search by ID</button>
-                    </div>
-                </div>
-            </div>
-            <div class="border rounded-4 overflow-hidden">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">StudentID</th>
-                            <th scope="col">FirstName</th>
-                            <th scope="col">LastNmae</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Course</th>
-                            <th scope="col">Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class=" col-8">
+                        <div class="">
+                            <div class="h5">
+                                <?php
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    ?>
+                                    <div class="card ">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">First Name:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['fname']}"; ?></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">Last Name:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['lname']}"; ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">Student ID:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['ID']}"; ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">Email:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['email']}"; ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">Course:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['course']}"; ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="row p-2 ">
+                                            <div class="col-6">Year:</div>
+                                            <div class="col-6 fw-bold"><?php echo "{$row['year']}"; ?></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=" col-4">
+                            <div class="card rounded-4">
+                                <div class="card-body">
+                                    <div class="h6 text-center fw-bold">Profile Image</div>
+                                    <div class="mb-3 row">
+                                        <div class="">
+                                            <img src="../../assets/prof1.jpg" class=" shadow-sm img-fluid rounded-5" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <?php
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                            <tr>
-                                <th scope="row"><?php echo "{$row['ID']}"; ?></th>
-                                <td><?php echo "{$row['fname']}"; ?></td>
-                                <td><?php echo "{$row['lname']}"; ?></td>
-                                <td><?php echo "{$row['email']}"; ?></td>
-                                <td><?php echo "{$row['course']}"; ?></td>
-                                <td><?php echo "{$row['year']}"; ?></td>
-                                <td class="text-center"><a href="editStudent.php?student_id=<?php echo $row['ID']; ?>"
-                                        class="btn btn-outline-warning py-1">Edit</a>
-                                </td>
-                                <td class="text-center">
+                                } ?>
 
-                                    <a onclick="return confirm('Are you sure to delete the student data?')"
-                                        href="delete.php?student_id=<?php echo $row['ID']; ?>"
-                                        class="btn btn-danger p-1">Delete</a>
-
-                                </td>
-                                <!-- onclick=\" JavaScript:return confirm('Are you sure to 
-                                delete this student data');\" -->
-                            </tr>
-                            <?php
-                        }
-                        ?>
-
-                    </tbody>
-                </table>
+                </div>
             </div>
         </main>
 
@@ -197,12 +207,10 @@ CloseCon($conn);
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-            function alert() {
-                alert('Are you sure?');
-            }
-        </script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
+    </script>
     </body>
 
 </html>

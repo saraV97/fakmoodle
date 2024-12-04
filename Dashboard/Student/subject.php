@@ -146,7 +146,7 @@ CloseCon($conn);
                                 <img src="../../assets/prof1.jpg" class="avatar shadow-sm img-fluid rounded-5" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="profile.php" class="dropdown-item">Profile</a>
                                 <a href="../../Login/logout.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
